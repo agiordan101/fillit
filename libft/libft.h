@@ -6,14 +6,14 @@
 /*   By: mwaterso <mwaterso@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 17:31:57 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/04 18:03:59 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/27 15:45:37 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 1
+# define BUFF_SIZE 5
 
 # include <string.h>
 # include <stdlib.h>
@@ -76,7 +76,6 @@ char				*ft_itoa(int n);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);
-void				ft_putstrtab(char **tab, size_t length);
 void				ft_putnbr(int n);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
@@ -85,8 +84,8 @@ void				ft_putnbr_fd(int n, int fd);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstadd(t_list **alst, t_list *newelem);
-void				ft_lstaddback(t_list **alst, t_list *newelem);
+void				ft_lstadd(t_list **alst, t_list *new);
+void				ft_lstaddback(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
@@ -102,5 +101,13 @@ int					**ft_addinttab(int **tab, int *line, size_t length);
 int					ft_sqrt(int nb);
 int					get_next_line(const int fd, char **line);
 void				ft_strfill(void *s, int c, size_t n);
+int					ft_atoi_base(const char *str, int base);
+void				ft_printtab(char **tab);
+void				ft_printtabl(char **tab);
+int					ft_tablen(char **tab);
+char				**ft_tabnew(size_t nline, size_t lline);
+void				ft_tabdel(char ***tab);
+char				**ft_tabcpy(char **dest, char **src);
+char				**ft_tabdup(char **tab);
 
 #endif

@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_atoi.c                                        .::    .:/ .      .::   */
+/*   ft_atoi_base.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/06 17:16:14 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/06 17:16:17 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/07 14:24:17 by agiordan     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/07 17:14:57 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+#include "libft.h"
+
+static int	is_base(char c, int base)
 {
-	long	nb;
+	char	*carac_base;
+	int		i;
+
+	carac_base = "0123456789ABCDEFGHIJKLMNOPQURSTUVWXYZ";
+	i = -1;
+	while (++i < base)
+		if (c == carac_base[i] || c == ft_tolower(carac_base[i]))
+			return (i);
+	return (-1);
+}
+
+int			ft_atoi_base(const char *str, int base)
+{
+	long	nbr;
 	int		sign;
 	int		i;
 
-	i = 0;
-	nb = 0;
+	nbr = 0;
 	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
+	i = -1;
+	while ((str[++i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		;
 	if (str[i] == '+')
 		i++;
 	else if (str[i] == '-')
@@ -29,7 +44,7 @@ int	ft_atoi(const char *str)
 		sign = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-		nb = nb * 10 + str[i++] - '0';
-	return ((int)(nb * sign));
+	while (is_base(str[i], base) != -1)
+		nbr = nbr * base + is_base(str[i++], base);
+	return ((int)(nbr * sign));
 }

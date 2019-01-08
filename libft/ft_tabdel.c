@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_putstrtab.c                                   .::    .:/ .      .::   */
+/*   ft_tabdel.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/13 18:56:42 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/13 19:15:36 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/07 14:49:14 by agiordan     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/07 16:57:15 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstrtab(char **tab, size_t length)
+void	ft_tabdel(char ***tab)
 {
-	size_t i;
+	int	i;
 
 	i = -1;
-	while (++i < length)
-		ft_putendl(tab[i]);
+	while ((*tab)[++i])
+		ft_strdel(*tab + i);
+	free(*tab);
+	*tab = NULL;
 }

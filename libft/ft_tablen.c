@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_addinttab.c                                   .::    .:/ .      .::   */
+/*   ft_tablen.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: agiordan <mwaterso@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: agiordan <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/11/14 20:16:36 by agiordan     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/07 14:30:52 by agiordan    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/07 16:57:04 by agiordan     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/07 16:57:09 by agiordan    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		**ft_addinttab(int **tab, int *line, size_t length)
+int	ft_tablen(char **tab)
 {
-	int		**newtab;
-	size_t	i;
+	int	count;
+	int	i;
 
-	newtab = (int **)malloc(sizeof(int *) * (length + 1));
-	i = 0;
-	while (i < length)
-	{
-		newtab[i] = tab[i];
-		tab[i] = NULL;
-		i++;
-	}
-	newtab[i] = line;
-	return (newtab);
+	count = 0;
+	i = -1;
+	if (!tab)
+		return (0);
+	while (tab[++i])
+		count++;
+	return (count);
 }
